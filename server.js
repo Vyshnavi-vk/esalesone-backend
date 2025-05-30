@@ -8,12 +8,14 @@ const app = express()
 connectDB()
 
 // app.post("/webhook", express.raw({ type: "application/json" }), webhook);
-app.use(express.json())
 app.use(cors({
-    origin:[
-        "http://localhost:5173"
-    ]
-}))
+  origin: ["http://localhost:5173"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,
+}));
+
+app.use(express.json())
+
 
 const PORT = process.env.PORT || 5000
 
